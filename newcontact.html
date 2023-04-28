@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link rel="stylesheet" href="contact.css">
+    <script src="https://kit.fontawesome.com/df4e3ea9fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="hero">
+        <form>
+            <div class="row">
+                <div class="input-group">
+                    <input type="text" id="name" required>
+                    <label for="name"><i class="fa-solid fa-user"></i>  Your Name</label>
+                </div>
+    
+                <div class="input-group">
+                    <input type="number" id="number" required>
+                    <label for="number"><i class="fa-solid fa-phone"></i>   Phone No.</label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" required>
+                <label for="email"><i class="fa-solid fa-envelope"></i>   Email Id</label>
+            </div>
+
+            <div class="input-group">
+                <textarea id="message" rows="8" required ></textarea>
+                <label for="message"><i class="fa-solid fa-message"></i>   Your Message</label>
+            </div>
+            <button type="submit">SUBMIT <i class="fa-solid fa-paper-plane"></i></button>
+            
+        </form>
+    </div>
+
+    <SCript>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz9eFA8LBeWbB668WRbGk0AG4QI5PGKThE0Qzp7BtQFg0R_pj8t0ye7pfvx4khEzEGLjw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg");
+    
+        form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML = "Done Scene"
+                    setTimeout(function(){
+                        msg.innerHTML = ""
+                    },5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
+            })
+    </SCript>
+</body>
+</html>
